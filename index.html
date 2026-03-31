@@ -13,22 +13,21 @@
         .menu-container { display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 20px auto; }
         .menu-btn { background: #1e293b; color: white; border: 1px solid #334155; padding: 16px; border-radius: 18px; font-size: 16px; cursor: pointer; text-decoration: none; font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .menu-btn.action-btn { background: #ffcc00; color: #0d1117; border-color: #ffcc00; margin-top: 10px; }
-        .menu-btn:active { transform: scale(0.97); }
         
         .donate-section { margin-top: 30px; padding: 15px; background: #161b22; border-radius: 20px; border: 1px dashed #ffcc00; max-width: 340px; margin-left: auto; margin-right: auto; }
-        .donate-title { color: #ffcc00; font-size: 14px; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; }
-        .donate-btn { display: block; background: #21262d; color: white; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 12px; font-size: 14px; border: 1px solid #30363d; }
+        .donate-title { color: #ffcc00; font-size: 13px; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .donate-btn { display: block; background: #21262d; color: white; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 12px; font-size: 14px; border: 1px solid #30363d; font-weight: bold; }
         
         .modal { display: none; background: #1f2937; padding: 25px; border-radius: 25px; border: 2px solid #ffcc00; margin: 10px; position: relative; z-index: 100; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
         .rules-text { text-align: left; font-size: 14px; line-height: 1.6; color: #cbd5e1; overflow-y: auto; max-height: 400px; }
         .back-btn { background: #334155; color: white; border: none; padding: 15px; border-radius: 15px; font-size: 15px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 20px; }
-        #music-control { color: #cbd5e1; font-size: 14px; margin-top: 25px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; padding: 10px 25px; border-radius: 25px; background: #1e293b; border: 1px solid #334155; }
+        #music-control { color: #cbd5e1; font-size: 14px; margin-top: 25px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; border-radius: 25px; background: #1e293b; border: 1px solid #334155; font-weight: bold; }
         b { color: #ffcc00; }
     </style>
 </head>
 <body>
     <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg">
+        <source src="https://archive.org/download/marsh-novoyi-armyi/marsh.mp3" type="audio/mpeg">
     </audio>
 
     <div class="header-block">
@@ -47,7 +46,7 @@
         <div id="music-control" onclick="toggleMusic()">🎵 Увімкнути Гімн</div>
 
         <div class="donate-section">
-            <div class="donate-title">Членські внески та донати ❤️</div>
+            <div class="donate-title">ЧЛЕНСЬКІ ВНЕСКИ ТА ДОНАТИ ❤️</div>
             <a href="https://send.monobank.ua/jar/ALGbQ8CaYU" target="_blank" class="donate-btn">👍 Через Монобанк</a>
             <a href="https://www.privat24.ua/send/i0qz3" target="_blank" class="donate-btn">❤️ Через ПриватБанк</a>
             <a href="https://pay.obank.com.ua/payment?type=skrynka&uuid=4B45E725-F5D1-4BF6-9CDD-2E81C98074C7" target="_blank" class="donate-btn">❤️ Через Ідея Банк (OBANK)</a>
@@ -58,9 +57,9 @@
         <h3 style="color:#ffcc00; margin-top:0;">📜 Історія ОУН</h3>
         <div class="rules-text">
             Організація Українських Націоналістів була заснована у 1929 році під проводом <b>Євгена Коновальця</b>. <br><br>
-            Після його загибелі організацію очолив <b>Андрій Мельник</b>, який продовжив справу консолідації державницьких сил. <br><br>
+            Після його загибелі організацію очолив <b>Андрій Мельник</b>. <br><br>
             Видатними діячами руху були <b>Олег Ольжич</b> та <b>Олена Теліга</b>. <br><br>
-            Важливою частиною визвольної боротьби стала <b>УПА «Поліська Січ»</b>, створена <b>Тарасом Бульбою-Боровцем</b>.
+            Важливою частиною визвольної боротьби стала <b>УПА «Поліська Січ»</b> Тараса Бульби-Боровця.
         </div>
         <button class="back-btn" onclick="closeModals()">ПОВЕРНУТИСЬ</button>
     </div>
@@ -69,10 +68,9 @@
         <h3 style="color:#ffcc00; margin-top:0;">✊ ОУН Сьогодні</h3>
         <div class="rules-text">
             Сьогодні ОУН під проводом <b>Богдана Червака</b> діє в усіх областях України. <br><br>
-            <b>Військовий чин:</b> У складі ЗСУ діє <b>Рота УВО імені Євгена Коновальця</b>. <br><br>
+            <b>Військовий чин:</b> Рота УВО імені Євгена Коновальця у складі ЗСУ. <br><br>
             <b>Організації:</b> Жіноче товариство ім. Олени Теліги та Ольги Басараб. <br><br>
-            <b>Медіа:</b> Газета <b>«Українське слово (Літаври)»</b>. <br><br>
-            Наші пріоритети — волонтерство та патріотичне виховання.
+            <b>Медіа:</b> Газета <b>«Українське слово (Літаври)»</b>.
         </div>
         <button class="back-btn" onclick="closeModals()">ПОВЕРНУТИСЬ</button>
     </div>
@@ -81,8 +79,21 @@
     const tg = window.Telegram.WebApp; tg.expand();
     function showModal(id) { document.getElementById('main-content').style.display = 'none'; document.getElementById(id).style.display = 'block'; }
     function closeModals() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); document.getElementById('main-content').style.display = 'block'; }
-    const music = document.getElementById('bg-music'); const control = document.getElementById('music-control');
-    let isPlaying = false; function toggleMusic() { if (isPlaying) { music.pause(); control.innerText = "🎵 Увімкнути Гімн"; } else { music.play(); control.innerText = "⏸ Вимкнути Гімн"; } isPlaying = !isPlaying; }
+    
+    const music = document.getElementById('bg-music'); 
+    const control = document.getElementById('music-control');
+    let isPlaying = false; 
+
+    function toggleMusic() { 
+        if (isPlaying) { 
+            music.pause(); 
+            control.innerHTML = "🎵 Увімкнути Гімн"; 
+        } else { 
+            music.play().catch(e => console.log("Потрібна взаємодія з екраном")); 
+            control.innerHTML = "⏸ Вимкнути Гімн"; 
+        } 
+        isPlaying = !isPlaying; 
+    }
 </script>
 </body>
 </html>
