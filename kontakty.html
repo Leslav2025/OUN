@@ -10,19 +10,25 @@
         .header-block { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 15px 0 25px 0; }
         .logo-img { height: 65px; width: auto; border-radius: 8px; border: 2px solid #ffcc00; box-shadow: 0 0 15px rgba(255, 204, 0, 0.4); }
         h1 { color: #ffcc00; text-shadow: 0 0 15px rgba(255, 204, 0, 0.5); margin: 0; font-size: 26px; }
-        h2 { color: #ffcc00; font-size: 20px; margin-top: 20px; text-transform: uppercase; }
         
-        .contact-list { display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 20px auto; }
-        .contact-item { background: #1e293b; color: white; border: 1px solid #334155; padding: 16px; border-radius: 18px; text-decoration: none; font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .section-title { color: #ffcc00; font-size: 18px; margin: 25px 0 12px 0; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #334155; display: inline-block; padding-bottom: 5px; }
+        
+        .contact-list { display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 0 auto 20px auto; }
+        .contact-item { background: #1e293b; color: white; border: 1px solid #334155; padding: 16px; border-radius: 18px; text-decoration: none; font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
         .contact-item:active { transform: scale(0.97); }
         .web-link { background: #ffcc00; color: #0d1117; border-color: #ffcc00; }
+
+        /* Стилі для спливаючих вікон */
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #1f2937; padding: 25px; border-radius: 25px; border: 2px solid #ffcc00; z-index: 1000; width: 85%; max-width: 320px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+        .copy-btn { background: #ffcc00; color: #0d1117; border: none; padding: 12px; border-radius: 12px; font-weight: bold; margin-top: 15px; cursor: pointer; width: 100%; font-size: 14px; }
+        .close-modal { color: #8b949e; font-size: 13px; margin-top: 18px; cursor: pointer; display: block; text-decoration: underline; }
 
         .donate-section { margin-top: 30px; padding: 15px; background: #161b22; border-radius: 20px; border: 1px dashed #ffcc00; max-width: 340px; margin-left: auto; margin-right: auto; }
         .donate-title { color: #ffcc00; font-size: 13px; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; }
         .donate-btn { display: block; background: #21262d; color: white; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 12px; font-size: 14px; border: 1px solid #30363d; font-weight: bold; }
         
         #music-control { color: #cbd5e1; font-size: 14px; margin-top: 25px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; border-radius: 25px; background: #1e293b; border: 1px solid #334155; font-weight: bold; }
-        .back-home { display: inline-block; margin-top: 25px; color: #8b949e; text-decoration: none; font-size: 14px; }
+        .back-home { display: inline-block; margin-top: 25px; color: #8b949e; text-decoration: none; font-size: 14px; padding: 10px; }
     </style>
 </head>
 <body>
@@ -35,11 +41,33 @@
         <h1>Запорізька ОУН</h1>
     </div>
 
-    <h2>Контакти ОУН</h2>
-
+    <div class="section-title">Контакти ОУН</div>
     <div class="contact-list">
         <a href="https://kmoun.info/" target="_blank" class="contact-item web-link">🌐 Офіційний сайт ОУН</a>
+        <a href="https://t.me/nationalizm" target="_blank" class="contact-item">📢 Голова ОУН в Telegram</a>
+        <div onclick="openModal('central-modal')" class="contact-item">✉️ Секретаріат ОУН (Email)</div>
+    </div>
+
+    <div class="section-title">Запорізька ОУН</div>
+    <div class="contact-list">
+        <a href="https://t.me/ounzp" target="_blank" class="contact-item">📢 Канал в Telegram</a>
+        <a href="https://www.facebook.com/share/18d8gq5uVT/" target="_blank" class="contact-item">🔵 Сторінка у Facebook</a>
+        <div onclick="openModal('local-modal')" class="contact-item">✉️ Обласний провідник (Email)</div>
         <a href="https://t.me/Leslav" target="_blank" class="contact-item">👤 Адміністратор @Leslav</a>
+    </div>
+
+    <div id="central-modal" class="modal">
+        <b style="color: #ffcc00; font-size: 16px;">Секретаріат ОУН</b><br><br>
+        <span id="email-central" style="font-size: 15px;">secretariatoun@gmail.com</span><br>
+        <button class="copy-btn" onclick="copyText('email-central')">СКОПІЮВАТИ АДРЕСУ</button>
+        <span class="close-modal" onclick="closeModals()">Закрити</span>
+    </div>
+
+    <div id="local-modal" class="modal">
+        <b style="color: #ffcc00; font-size: 16px;">Провідник на Запоріжжі</b><br><br>
+        <span id="email-local" style="font-size: 15px;">leslav2007@gmail.com</span><br>
+        <button class="copy-btn" onclick="copyText('email-local')">СКОПІЮВАТИ АДРЕСУ</button>
+        <span class="close-modal" onclick="closeModals()">Закрити</span>
     </div>
 
     <div id="music-control" onclick="toggleMusic()">🎵 Увімкнути Гімн</div>
@@ -51,7 +79,7 @@
         <a href="https://pay.obank.com.ua/payment?type=skrynka&uuid=4B45E725-F5D1-4BF6-9CDD-2E81C98074C7" target="_blank" class="donate-btn">❤️ Через Ідея Банк (OBANK)</a>
     </div>
 
-    <a href="index.html" class="back-home">⬅ Повернутися на головну</a>
+    <a href="index.html" class="back-home">⬅ На головну сторінку</a>
 
 <script>
     const music = document.getElementById('bg-music'); 
@@ -59,14 +87,20 @@
     let isPlaying = false; 
 
     function toggleMusic() { 
-        if (isPlaying) { 
-            music.pause(); 
-            control.innerHTML = "🎵 Увімкнути Гімн"; 
-        } else { 
-            music.play().catch(e => console.log("Потрібна взаємодія")); 
-            control.innerHTML = "⏸ Вимкнути Гімн"; 
-        } 
+        if (isPlaying) { music.pause(); control.innerHTML = "🎵 Увімкнути Гімн"; } 
+        else { music.play().catch(e => console.log("Потрібна взаємодія")); control.innerHTML = "⏸ Вимкнути Гімн"; } 
         isPlaying = !isPlaying; 
+    }
+
+    function openModal(id) { document.getElementById(id).style.display = 'block'; }
+    function closeModals() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); }
+    
+    function copyText(elementId) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Адресу скопійовано: " + text);
+            closeModals();
+        });
     }
 </script>
 </body>
