@@ -27,7 +27,7 @@
 </head>
 <body>
     <audio id="bg-music" loop>
-        <source src="https://archive.org/download/marsh-novoyi-armyi/marsh.mp3" type="audio/mpeg">
+        <source src="Гімн-ОУН-УПА-Зродились-ми-великої-години.mp4" type="audio/mp4">
     </audio>
 
     <div class="header-block">
@@ -89,7 +89,7 @@
             music.pause(); 
             control.innerHTML = "🎵 Увімкнути Гімн"; 
         } else { 
-            music.play().catch(e => console.log("Потрібна взаємодія з екраном")); 
+            music.play().catch(e => console.log("Потрібна взаємодія")); 
             control.innerHTML = "⏸ Вимкнути Гімн"; 
         } 
         isPlaying = !isPlaying; 
