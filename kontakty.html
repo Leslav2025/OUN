@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Запорізька ОУН</title>
+    <title>Контакти ОУН</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body { background-color: #0d1117; color: white; font-family: sans-serif; text-align: center; margin: 0; padding: 10px; padding-bottom: 90px; }
         .header-block { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 15px 0 25px 0; }
         .logo-img { height: 65px; width: auto; border-radius: 8px; border: 2px solid #ffcc00; box-shadow: 0 0 15px rgba(255, 204, 0, 0.4); }
         h1 { color: #ffcc00; text-shadow: 0 0 15px rgba(255, 204, 0, 0.5); margin: 0; font-size: 26px; }
-        .menu-container { display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 20px auto; }
-        .menu-btn { background: #1e293b; color: white; border: 1px solid #334155; padding: 16px; border-radius: 18px; font-size: 16px; cursor: pointer; text-decoration: none; font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .menu-btn.action-btn { background: #ffcc00; color: #0d1117; border-color: #ffcc00; margin-top: 10px; }
+        h2 { color: #ffcc00; font-size: 20px; margin-top: 20px; text-transform: uppercase; }
         
+        .contact-list { display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 20px auto; }
+        .contact-item { background: #1e293b; color: white; border: 1px solid #334155; padding: 16px; border-radius: 18px; text-decoration: none; font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .contact-item:active { transform: scale(0.97); }
+        .web-link { background: #ffcc00; color: #0d1117; border-color: #ffcc00; }
+
         .donate-section { margin-top: 30px; padding: 15px; background: #161b22; border-radius: 20px; border: 1px dashed #ffcc00; max-width: 340px; margin-left: auto; margin-right: auto; }
-        .donate-title { color: #ffcc00; font-size: 13px; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .donate-title { color: #ffcc00; font-size: 13px; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; }
         .donate-btn { display: block; background: #21262d; color: white; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 12px; font-size: 14px; border: 1px solid #30363d; font-weight: bold; }
         
-        .modal { display: none; background: #1f2937; padding: 25px; border-radius: 25px; border: 2px solid #ffcc00; margin: 10px; position: relative; z-index: 100; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
-        .rules-text { text-align: left; font-size: 14px; line-height: 1.6; color: #cbd5e1; overflow-y: auto; max-height: 400px; }
-        .back-btn { background: #334155; color: white; border: none; padding: 15px; border-radius: 15px; font-size: 15px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 20px; }
         #music-control { color: #cbd5e1; font-size: 14px; margin-top: 25px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; border-radius: 25px; background: #1e293b; border: 1px solid #334155; font-weight: bold; }
-        b { color: #ffcc00; }
+        .back-home { display: inline-block; margin-top: 25px; color: #8b949e; text-decoration: none; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -35,51 +35,25 @@
         <h1>Запорізька ОУН</h1>
     </div>
 
-    <div id="main-content">
-        <div class="menu-container">
-            <div onclick="showModal('history-modal')" class="menu-btn">📜 Історія ОУН</div>
-            <div onclick="showModal('today-modal')" class="menu-btn">✊ ОУН Сьогодні</div>
-            <a href="kontakty.html" class="menu-btn">📞 Контакти</a>
-            <a href="https://t.me/Leslav" target="_blank" class="menu-btn action-btn">🇺🇦 До лав ОУН</a>
-        </div>
-        
-        <div id="music-control" onclick="toggleMusic()">🎵 Увімкнути Гімн</div>
+    <h2>Контакти ОУН</h2>
 
-        <div class="donate-section">
-            <div class="donate-title">ЧЛЕНСЬКІ ВНЕСКИ ТА ДОНАТИ ❤️</div>
-            <a href="https://send.monobank.ua/jar/ALGbQ8CaYU" target="_blank" class="donate-btn">👍 Через Монобанк</a>
-            <a href="https://www.privat24.ua/send/i0qz3" target="_blank" class="donate-btn">❤️ Через ПриватБанк</a>
-            <a href="https://pay.obank.com.ua/payment?type=skrynka&uuid=4B45E725-F5D1-4BF6-9CDD-2E81C98074C7" target="_blank" class="donate-btn">❤️ Через Ідея Банк (OBANK)</a>
-        </div>
+    <div class="contact-list">
+        <a href="https://kmoun.info/" target="_blank" class="contact-item web-link">🌐 Офіційний сайт ОУН</a>
+        <a href="https://t.me/Leslav" target="_blank" class="contact-item">👤 Адміністратор @Leslav</a>
     </div>
 
-    <div id="history-modal" class="modal">
-        <h3 style="color:#ffcc00; margin-top:0;">📜 Історія ОУН</h3>
-        <div class="rules-text">
-            Організація Українських Націоналістів була заснована у 1929 році під проводом <b>Євгена Коновальця</b>. <br><br>
-            Після його загибелі організацію очолив <b>Андрій Мельник</b>. <br><br>
-            Видатними діячами руху були <b>Олег Ольжич</b> та <b>Олена Теліга</b>. <br><br>
-            Важливою частиною визвольної боротьби стала <b>УПА «Поліська Січ»</b> Тараса Бульби-Боровця.
-        </div>
-        <button class="back-btn" onclick="closeModals()">ПОВЕРНУТИСЬ</button>
+    <div id="music-control" onclick="toggleMusic()">🎵 Увімкнути Гімн</div>
+
+    <div class="donate-section">
+        <div class="donate-title">ЧЛЕНСЬКІ ВНЕСКИ ТА ДОНАТИ ❤️</div>
+        <a href="https://send.monobank.ua/jar/ALGbQ8CaYU" target="_blank" class="donate-btn">👍 Через Монобанк</a>
+        <a href="https://www.privat24.ua/send/i0qz3" target="_blank" class="donate-btn">❤️ Через ПриватБанк</a>
+        <a href="https://pay.obank.com.ua/payment?type=skrynka&uuid=4B45E725-F5D1-4BF6-9CDD-2E81C98074C7" target="_blank" class="donate-btn">❤️ Через Ідея Банк (OBANK)</a>
     </div>
 
-    <div id="today-modal" class="modal">
-        <h3 style="color:#ffcc00; margin-top:0;">✊ ОУН Сьогодні</h3>
-        <div class="rules-text">
-            Сьогодні ОУН під проводом <b>Богдана Червака</b> діє в усіх областях України. <br><br>
-            <b>Військовий чин:</b> Рота УВО імені Євгена Коновальця у складі ЗСУ. <br><br>
-            <b>Організації:</b> Жіноче товариство ім. Олени Теліги та Ольги Басараб. <br><br>
-            <b>Медіа:</b> Газета <b>«Українське слово (Літаври)»</b>.
-        </div>
-        <button class="back-btn" onclick="closeModals()">ПОВЕРНУТИСЬ</button>
-    </div>
+    <a href="index.html" class="back-home">⬅ Повернутися на головну</a>
 
 <script>
-    const tg = window.Telegram.WebApp; tg.expand();
-    function showModal(id) { document.getElementById('main-content').style.display = 'none'; document.getElementById(id).style.display = 'block'; }
-    function closeModals() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); document.getElementById('main-content').style.display = 'block'; }
-    
     const music = document.getElementById('bg-music'); 
     const control = document.getElementById('music-control');
     let isPlaying = false; 
