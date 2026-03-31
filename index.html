@@ -1,226 +1,84 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
- <title>ОУН ІНФО</title>
- <script src="https://telegram.org/js/telegram-web-app.js"></script>
- <style>
- body {
- background-color: #0d1117; /* Темний фон */
- color: white;
- font-family: sans-serif;
- text-align: center;
- margin: 0;
- padding: 10px;
- padding-bottom: 90px;
- }
-
- .header-block {
- display: flex;
- align-items: center;
- justify-content: center;
- gap: 15px;
- margin: 15px 0 25px 0;
- }
-
- .logo-img {
- height: 60px;
- width: 90px;
- border-radius: 10px;
- border: 2px solid #ffcc00;
- background-color: #007aff; /* Синій як на прапорі */
- padding: 5px;
- box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
- }
-
- h1 {
- color: #ffcc00; /* Золотий заголовок */
- text-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
- margin: 0;
- font-size: 28px;
- letter-spacing: 1px;
- }
-
- .menu-container {
- display: flex;
- flex-direction: column;
- gap: 15px;
- max-width: 340px;
- margin: 20px auto;
- }
-
- .menu-btn {
- background: #1e293b;
- color: white;
- border: 1px solid #334155;
- padding: 15px;
- border-radius: 18px;
- font-size: 16px;
- cursor: pointer;
- text-decoration: none;
- font-weight: bold;
- transition: 0.3s;
- display: flex;
- align-items: center;
- justify-content: center;
- gap: 10px;
- }
-
- .menu-btn.action-btn {
- background: #ffcc00; /* Золотий для анкет */
- color: #0d1117;
- border-color: #ffcc00;
- margin-top: 15px;
- }
-
- .menu-btn:active {
- transform: scale(0.98);
- }
-
- /* Модальні вікна */
- .modal {
- display: none;
- background: #1f2937;
- padding: 25px;
- border-radius: 25px;
- border: 2px solid #ffcc00;
- margin: 10px;
- position: relative;
- z-index: 100;
- box-shadow: 0 10px 30px rgba(0,0,0,0.5);
- animation: modalSlideUp 0.3s ease;
- }
-
- @keyframes modalSlideUp {
- from { transform: translateY(20px); opacity: 0; }
- to { transform: translateY(0); opacity: 1; }
- }
-
- .rules-text {
- text-align: left;
- font-size: 15px;
- line-height: 1.7;
- color: #cbd5e1;
- }
-
- .back-btn {
- background: #334155;
- color: white;
- border: none;
- padding: 15px;
- border-radius: 15px;
- font-size: 15px;
- cursor: pointer;
- width: 100%;
- font-weight: bold;
- }
-
- .modal-header {
- color: #ffcc00;
- margin-top: 0;
- font-size: 22px;
- }
-
- #music-control {
- color: #cbd5e1;
- font-size: 14px;
- margin-top: 30px;
- cursor: pointer;
- display: inline-flex;
- align-items: center;
- gap: 10px;
- padding: 10px 20px;
- border-radius: 20px;
- background: #1e293b;
- border: 1px solid #334155;
- }
- </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ОУН ІНФО</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { background-color: #0d1117; color: white; font-family: sans-serif; text-align: center; margin: 0; padding: 10px; padding-bottom: 90px; }
+        .header-block { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 15px 0 25px 0; }
+        .logo-img { height: 65px; width: auto; border-radius: 8px; border: 2px solid #ffcc00; box-shadow: 0 0 15px rgba(255, 204, 0, 0.4); }
+        h1 { color: #ffcc00; text-shadow: 0 0 15px rgba(255, 204, 0, 0.5); margin: 0; font-size: 26px; }
+        .menu-container { display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 20px auto; }
+        .menu-btn { background: #1e293b; color: white; border: 1px solid #334155; padding: 16px; border-radius: 18px; font-size: 16px; cursor: pointer; text-decoration: none; font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .menu-btn.action-btn { background: #ffcc00; color: #0d1117; border-color: #ffcc00; margin-top: 10px; }
+        .menu-btn:active { transform: scale(0.97); }
+        .modal { display: none; background: #1f2937; padding: 25px; border-radius: 25px; border: 2px solid #ffcc00; margin: 10px; position: relative; z-index: 100; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .rules-text { text-align: left; font-size: 15px; line-height: 1.7; color: #cbd5e1; }
+        .back-btn { background: #334155; color: white; border: none; padding: 15px; border-radius: 15px; font-size: 15px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 20px; }
+        #music-control { color: #cbd5e1; font-size: 14px; margin-top: 25px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; padding: 10px 25px; border-radius: 25px; background: #1e293b; border: 1px solid #334155; }
+    </style>
 </head>
 <body>
- 
- <audio id="bg-music" loop>
- <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg">
- </audio>
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3" type="audio/mpeg">
+    </audio>
 
- <div class="header-block">
- <img src="https://i.ibb.co/L95m52D/oun-symbol.jpg" alt="ОУН" class="logo-img">
- <h1>ОУН ІНФО</h1>
- </div>
+    <div class="header-block">
+        <img src="images.png" alt="ОУН" class="logo-img">
+        <h1>ОУН ІНФО</h1>
+    </div>
 
- <div id="game-zone">
- <div class="menu-container">
- <div onclick="showModal('history-modal')" class="menu-btn">📜 Історія ОУН</div>
- <div onclick="showModal('today-modal')" class="menu-btn">✊ ОУН Сьогодні</div>
- <div onclick="showModal('contacts-modal')" class="menu-btn">📞 Контакти</div>
- <a href="https://t.me/Leslav" target="_blank" class="menu-btn action-btn">🇺🇦 До лав ОУН</a>
- </div>
+    <div id="main-content">
+        <div class="menu-container">
+            <div onclick="showModal('history-modal')" class="menu-btn">📜 Історія ОУН</div>
+            <div onclick="showModal('today-modal')" class="menu-btn">✊ ОУН Сьогодні</div>
+            <div onclick="showModal('contacts-modal')" class="menu-btn">📞 Контакти</div>
+            <a href="https://t.me/Leslav" target="_blank" class="menu-btn action-btn">🇺🇦 До лав ОУН</a>
+        </div>
+        <div id="music-control" onclick="toggleMusic()">🎵 Увімкнути Гімн</div>
+    </div>
 
- <div id="music-control" onclick="toggleMusic()">🎵 Увімкнути Гімн</div>
- </div>
+    <div id="history-modal" class="modal">
+        <h3 style="color:#ffcc00; margin-top:0;">📜 Історія ОУН</h3>
+        <div class="rules-text">
+            ОУН була заснована у 1929 році. <br><br>
+            <b>Провідники:</b> Євген Коновалець, Степан Бандера. <br><br>
+            Боротьба за Незалежність України була і залишається головною метою організації.
+        </div>
+        <button class="back-btn" onclick="closeModals()">ПОВЕРНУТИСЬ</button>
+    </div>
 
- <div id="history-modal" class="modal">
- <h3 class="modal-header">📜 Історія ОУН</h3>
- <div class="rules-text">
- Організація Українських Націоналістів (ОУН) була заснована у 1929 році у Відні. <br>
- Першим керівником став Євген Коновалець. <br>
- Мета: Створення Української Незалежної Соборної Держави. <br>
- Найвідоміші лідери: Степан Бандера, Андрій Мельник. <br>
- Під час Другої світової війни ОУН вела збройну боротьбу за волю України.
- </div>
- <br>
- <button class="back-btn" onclick="closeModals()">ПОВЕРНУТИСЬ ✅</button>
- </div>
+    <div id="today-modal" class="modal">
+        <h3 style="color:#ffcc00; margin-top:0;">✊ ОУН Сьогодні</h3>
+        <div class="rules-text">
+            Сьогодні ми стоїмо на захисті нашої держави. <br><br>
+            - Допомога ЗСУ та добровольцям. <br>
+            - Волонтерські проекти. <br>
+            - Національно-патріотичне виховання.
+        </div>
+        <button class="back-btn" onclick="closeModals()">ПОВЕРНУТИСЬ</button>
+    </div>
 
- <div id="today-modal" class="modal">
- <h3 class="modal-header">✊ ОУН Сьогодні</h3>
- <div class="rules-text">
- ОУН продовжує боротьбу за суверенітет та територіальну цілісність України. <br>
- Основні напрямки: <br>
- 1. Підтримка фронту та Збройних Сил. <br>
- 2. Волонтерська діяльність. <br>
- 3. Патріотичне виховання молоді. <br>
- 4. Участь у громадсько-політичному житті країни.
- </div>
- <br>
- <button class="back-btn" onclick="closeModals()">ПОВЕРНУТИСЬ ✅</button>
- </div>
-
- <div id="contacts-modal" class="modal">
- <h3 class="modal-header">📞 Контакти</h3>
- <div class="rules-text">
- Зв'язок з адміністрацією: <b>@Leslav</b>. <br>
- Канал новин: t.me/oun_news <br>
- Офіційний сайт: oun.org.ua <br>
- Напишіть нам, щоб дізнатися більше або стати частиною команди.
- </div>
- <br>
- <button class="back-btn" onclick="closeModals()">ПОВЕРНУТИСЬ ✅</button>
- </div>
+    <div id="contacts-modal" class="modal">
+        <h3 style="color:#ffcc00; margin-top:0;">📞 Контакти</h3>
+        <div class="rules-text">
+            <b>Адміністратор:</b> @Leslav <br><br>
+            З питань співпраці та вступу звертайтесь в особисті повідомлення.
+        </div>
+        <button class="back-btn" onclick="closeModals()">ПОВЕРНУТИСЬ</button>
+    </div>
 
 <script>
- const tg = window.Telegram.WebApp;
- tg.expand();
- 
- function showModal(id) {
- document.getElementById('game-zone').style.display = 'none';
- document.getElementById(id).style.display = 'block';
- }
-
- function closeModals() {
- document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
- document.getElementById('game-zone').style.display = 'block';
- }
-
- // Музика
- const music = document.getElementById('bg-music');
- const control = document.getElementById('music-control');
- let isPlaying = false;
- function toggleMusic() {
- if (isPlaying) { music.pause(); control.innerText = "🎵 Увімкнути Гімн"; } 
- else { music.play(); control.innerText = "⏸ Вимкнути Гімн"; }
- isPlaying = !isPlaying;
- }
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+    function showModal(id) { document.getElementById('main-content').style.display = 'none'; document.getElementById(id).style.display = 'block'; }
+    function closeModals() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); document.getElementById('main-content').style.display = 'block'; }
+    const music = document.getElementById('bg-music');
+    const control = document.getElementById('music-control');
+    let isPlaying = false;
+    function toggleMusic() { if (isPlaying) { music.pause(); control.innerText = "🎵 Увімкнути Гімн"; } else { music.play(); control.innerText = "⏸ Вимкнути Гімн"; } isPlaying = !isPlaying; }
 </script>
 </body>
 </html>
