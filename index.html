@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Запорізька ОУН</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
     <style>
         body { background-color: #0d1117; color: white; font-family: sans-serif; text-align: center; margin: 0; padding: 10px; padding-bottom: 90px; }
         .header-block { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 15px 0 25px 0; }
@@ -16,9 +17,13 @@
         
         .donate-section { margin-top: 30px; padding: 15px; background: #161b22; border-radius: 20px; border: 1px dashed #ffcc00; max-width: 340px; margin-left: auto; margin-right: auto; }
         .donate-title { color: #ffcc00; font-size: 13px; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
-        .donate-btn { display: block; background: #21262d; color: white; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 12px; font-size: 14px; border: 1px solid #30363d; font-weight: bold; }
+        .donate-btn { display: block; background: #21262d; color: white; text-decoration: none; padding: 12px; margin: 8px 0; border-radius: 12px; font-size: 14px; border: 1px solid #30363d; font-weight: bold; cursor: pointer; }
         
-        .modal { display: none; background: #1f2937; padding: 25px; border-radius: 25px; border: 2px solid #ffcc00; margin: 10px; position: relative; z-index: 100; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        /* СТИЛІ ДЛЯ TON */
+        #ton-actions { display: none; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+        .btn-ton-quick { background: #007aff; color: white; border: none; padding: 10px 15px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 12px; }
+
+        .modal { display: none; background: #1f2937; padding: 25px; border-radius: 25px; border: 2px solid #ffcc00; margin: 10px; position: fixed; top: 20px; left: 10px; right: 10px; z-index: 100; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
         .rules-text { text-align: left; font-size: 14px; line-height: 1.6; color: #cbd5e1; overflow-y: auto; max-height: 400px; }
         .back-btn { background: #334155; color: white; border: none; padding: 15px; border-radius: 15px; font-size: 15px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 20px; }
         #music-control { color: #cbd5e1; font-size: 14px; margin-top: 25px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; border-radius: 25px; background: #1e293b; border: 1px solid #334155; font-weight: bold; }
@@ -47,9 +52,19 @@
 
         <div class="donate-section">
             <div class="donate-title">ЧЛЕНСЬКІ ВНЕСКИ ТА ДОНАТИ ❤️</div>
+            
+            <div id="ton-connect-button" style="display: flex; justify-content: center; margin-bottom: 10px;"></div>
+            <div id="ton-actions">
+                <button class="btn-ton-quick" onclick="sendTon(1)">1 TON</button>
+                <button class="btn-ton-quick" onclick="sendTon(5)">5 TON</button>
+                <button class="btn-ton-quick" onclick="sendTon(10)">10 TON</button>
+            </div>
+
+            <div style="margin: 15px 0; font-size: 11px; opacity: 0.5;">АБО ТРАДИЦІЙНО</div>
+
             <a href="https://send.monobank.ua/jar/ALGbQ8CaYU" target="_blank" class="donate-btn">👍 Через Монобанк</a>
             <a href="https://www.privat24.ua/send/i0qz3" target="_blank" class="donate-btn">❤️ Через ПриватБанк</a>
-            <a href="https://pay.obank.com.ua/payment?type=skrynka&uuid=4B45E725-F5D1-4BF6-9CDD-2E81C98074C7" target="_blank" class="donate-btn">❤️ Через Ідея Банк (OBANK)</a>
+            <a href="https://pay.obank.com.ua/payment?type=skrynka&uuid=4B45E725-F5D1-4BF6-9CDD-2E81C98074C7" target="_blank" class="donate-btn">❤️ Через Ідея Банк</a>
         </div>
     </div>
 
@@ -93,6 +108,33 @@
             control.innerHTML = "⏸ Вимкнути Гімн"; 
         } 
         isPlaying = !isPlaying; 
+    }
+
+    // ЛОГІКА TON
+    const MY_WALLET = "UQDXq1iAqu88tVRG62_k03kAXELu_1gzRBMye-VZoFRIRtWw";
+    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+        manifestUrl: 'https://leslav2025.github.io/OUN/oun-manifest.json',
+        buttonRootId: 'ton-connect-button'
+    });
+
+    tonConnectUI.onStatusChange(wallet => {
+        document.getElementById('ton-actions').style.display = wallet ? 'flex' : 'none';
+    });
+
+    async function sendTon(amount) {
+        const transaction = {
+            validUntil: Math.floor(Date.now() / 1000) + 300,
+            messages: [{
+                address: MY_WALLET,
+                amount: (amount * 1000000000).toString()
+            }]
+        };
+        try {
+            await tonConnectUI.sendTransaction(transaction);
+            alert("Дякуємо за ваш внесок! Слава Україні!");
+        } catch (e) {
+            alert("Помилка або скасування.");
+        }
     }
 </script>
 </body>
